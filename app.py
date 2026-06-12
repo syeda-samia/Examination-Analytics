@@ -1,7 +1,3 @@
-# cbt_analytics_advanced.py
-# ADVANCED CBT Examination Analytics Dashboard - Enterprise Grade
-# Data Science Team 1 | Academic Analytics & Business Intelligence
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -296,13 +292,15 @@ def get_live_datetime():
     return datetime.now().strftime("%A, %B %d, %Y | %I:%M:%S %p")
 
 # ============================================================================
-# DATABASE CONNECTION
+# DATABASE CONNECTION (Updated for Streamlit Cloud compatibility)
 # ============================================================================
 
 @st.cache_resource
 def get_db_connection():
-    """Connect to Supabase PostgreSQL database"""
+    """Connect to Supabase PostgreSQL database - handles connection errors gracefully"""
     try:
+        # Use environment variables or secrets for production
+        # For now, using your provided credentials
         conn = psycopg2.connect(
             dbname="postgres",
             user="postgres.gxfixjysmdmyvycuyucs",
@@ -310,10 +308,11 @@ def get_db_connection():
             host="aws-1-ap-southeast-1.pooler.supabase.com",
             port="5432",
             sslmode="require",
-            connect_timeout=30
+            connect_timeout=10  # Reduced timeout for better handling
         )
         return conn
     except Exception as e:
+        # Silently fail - will show error in UI
         return None
 
 @st.cache_data(ttl=300)
@@ -855,8 +854,11 @@ def main():
                                 st.session_state['exam_data'] = df
                                 st.success(f"✅ Loaded {rows:,} records!")
                                 st.rerun()
-                except:
-                    pass
+                except Exception as e:
+                    st.error(f"Database error: {str(e)}")
+            else:
+                st.warning("⚠️ Cannot connect to database. Using sample data instead.")
+                use_db = "📊 Sample Data"  # Fallback to sample data
         
         if st.button("📊 Generate Sample Data", use_container_width=True):
             # Generate sample data
