@@ -14,7 +14,7 @@ warnings.filterwarnings('ignore')
 
 # Advanced Page Configuration
 st.set_page_config(
-    page_title="CBT Examination Analytics | University ERP",
+    page_title="Examination Analytics | University ERP",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -32,32 +32,64 @@ st.markdown("""
     <style>
     /* Main Header - Soft gradient with light colors */
     .main-header {
-        background: linear-gradient(135deg, #a8e6cf 0%, #d4f1f4 50%, #ffe6f0 100%);
+        background: linear-gradient(135deg, #1a3a6a 0%, #2f528f 50%, #3a6a9f 100%);
         padding: 2rem;
         border-radius: 20px;
         margin-bottom: 2rem;
         text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 15px rgba(47, 82, 143, 0.35);
+        border-bottom: 3px solid #4ab8e8;
+    }
+    
+    /* Force ALL text in header to be white */
+    .main-header,
+    .main-header *,
+    .main-header h1,
+    .main-header p,
+    .main-header span,
+    .main-header div,
+    .main-header strong,
+    .main-header em,
+    .main-header b,
+    .main-header i {
+        color: #ffffff !important;
     }
     
     .main-header h1 {
-        color: #2c5f8a !important;
         margin: 0 !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.5px;
+        font-size: 2.2rem !important;
     }
     
     .main-header p {
-        color: #4a6f8a !important;
+        font-weight: 300 !important;
+        margin: 0.3rem 0 !important;
     }
     
-    /* ALL Headings - Soft blue-gray */
-    h1, h2, h3, h4, h5, h6 {
-        color: #3a7ca5 !important;
-        font-weight: 500 !important;
+    .main-header p:first-of-type {
+        font-size: 1.1rem !important;
     }
     
-    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3, .stMarkdown h4 {
-        color: #3a7ca5 !important;
+    .main-header p:last-of-type {
+        font-size: 0.9rem !important;
+        opacity: 0.85;
     }
+    
+    
+    /* ALL Headings - Soft blue-gray (EXCEPT header) */
+h1:not(.main-header h1), 
+h2, h3, h4, h5, h6 {
+    color: #3a7ca5 !important;
+    font-weight: 500 !important;
+}
+
+.stMarkdown h1:not(.main-header h1), 
+.stMarkdown h2, 
+.stMarkdown h3, 
+.stMarkdown h4 {
+    color: #3a7ca5 !important;
+}
     
     /* Subheaders - Soft blue */
     .stSubheader, .stHeader {
@@ -114,19 +146,62 @@ st.markdown("""
         color: #8aaec9 !important;
     }
     
-    /* Info Box - Soft pastel */
-    .info-box {
-        background: linear-gradient(135deg, #f0f9ff 0%, #e8f4fd 100%);
-        padding: 1rem;
-        border-radius: 16px;
-        margin: 1rem 0;
-        border-left: 4px solid #a8e6cf;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    
-    .info-box strong, .info-box p {
-        color: #4a7ba8 !important;
-    }
+    /* Info Box - Matching Header Style with FORCED overrides */
+div.info-box,
+.info-box,
+.info-box.info-box {
+    background: linear-gradient(135deg, #1a3a6a 0%, #2f528f 50%, #3a6a9f 100%) !important;
+    padding: 2rem !important;
+    border-radius: 16px !important;
+    margin: 1rem 0 !important;
+    border-left: 4px solid #4ab8e8 !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    box-shadow: 0 4px 20px rgba(47, 82, 143, 0.3) !important;
+}
+
+/* Force ALL text inside info-box to be white/light */
+div.info-box *,
+.info-box *,
+.info-box h2,
+.info-box p,
+.info-box li,
+.info-box span,
+.info-box div,
+.info-box strong,
+.info-box em,
+.info-box ul,
+.info-box ol,
+.info-box h4 {
+    color: #d0e0f0 !important;
+}
+
+div.info-box h2,
+.info-box h2 {
+    color: #ffffff !important;
+    font-size: 2rem !important;
+}
+
+div.info-box h4,
+.info-box h4 {
+    color: #4ab8e8 !important;
+}
+
+div.info-box p,
+.info-box p {
+    color: #d0e0f0 !important;
+}
+
+div.info-box ul,
+.info-box ul {
+    color: #d0e0f0 !important;
+}
+
+div.info-box li,
+.info-box li {
+    color: #d0e0f0 !important;
+}
     
     /* Sidebar - Light background */
     .css-1d391kg {
@@ -280,6 +355,445 @@ st.markdown("""
     .stSuccess {
         background-color: #e8f8f0;
         color: #6abf8a;
+    }
+    /* ULTIMATE OVERRIDE - Force header text to white */
+    div.main-header h1,
+    div.main-header p,
+    div.main-header * {
+    color: #ffffff !important;
+    }
+    
+    
+    /* ====== GLOBAL BACKGROUND BLACK ====== */
+    /* Main app background */
+    .stApp {
+        background-color: #0a0a0a !important;
+    }
+    
+    /* Main content area */
+    .main > div {
+        background-color: #0a0a0a !important;
+    }
+    
+    /* Block containers */
+    .block-container {
+        background-color: #0a0a0a !important;
+    }
+    
+    /* All divs inside main */
+    .stApp > div,
+    .stApp .main,
+    .stApp .block-container,
+    .stApp .element-container,
+    .stApp .stMarkdown,
+    .stApp .stDataFrame,
+    .stApp .stPlotlyChart {
+        background-color: #0a0a0a !important;
+    }
+    
+    /* All text to white for readability */
+    .stApp,
+    .stApp p,
+    .stApp li,
+    .stApp span,
+    .stApp label,
+    .stApp .stMarkdown,
+    .stApp .stText,
+    .stApp .stMetric label,
+    .stApp .stMetric .stMetricLabel {
+        color: #ffffff !important;
+    }
+    
+    /* Headings - make them visible on black */
+    h1, h2, h3, h4, h5, h6 {
+        color: #4ab8e8 !important;
+    }
+    
+    /* Metric cards on black background */
+    .metric-card {
+        background: linear-gradient(135deg, #1a1a1a, #2a2a2a) !important;
+        border: 1px solid #3a3a3a !important;
+    }
+    
+    .metric-card h2 {
+        color: #4ab8e8 !important;
+    }
+    
+    .metric-card h3 {
+        color: #8aaec9 !important;
+    }
+    
+    .metric-card p {
+        color: #8aaec9 !important;
+    }
+    
+    /* DataFrames on black */
+    .dataframe {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+    }
+    
+    .dataframe thead tr th {
+        background: linear-gradient(135deg, #2f528f 0%, #4a7abf 100%) !important;
+        color: #ffffff !important;
+    }
+    
+    .dataframe td {
+        color: #d0d0d0 !important;
+        border-color: #3a3a3a !important;
+    }
+    
+    .dataframe tbody tr:nth-child(even) {
+        background-color: #252525 !important;
+    }
+    
+    .dataframe tbody tr:nth-child(odd) {
+        background-color: #1a1a1a !important;
+    }
+    
+    /* Info boxes */
+    .info-box {
+        background: linear-gradient(135deg, #1a2a3a 0%, #0a1a2a 100%) !important;
+        border-left: 4px solid #4ab8e8 !important;
+        border: 1px solid #2a4a6a !important;
+    }
+    
+    .info-box strong, .info-box p, .info-box h4 {
+        color: #d0e0f0 !important;
+    }
+    
+    /* ====== SIDEBAR - GRAY BACKGROUND ====== */
+    /* Main sidebar container */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebar"] > div:first-child,
+    [data-testid="stSidebar"] .css-1d391kg,
+    [data-testid="stSidebar"] .css-1d391kg > div,
+    [data-testid="stSidebar"] .css-1d391kg > div > div {
+        background-color: #2a2a2a !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        border-right: 1px solid #3a3a3a !important;
+    }
+    
+    /* Remove black boxes from sidebar elements */
+    [data-testid="stSidebar"] .element-container,
+    [data-testid="stSidebar"] .stMarkdown,
+    [data-testid="stSidebar"] .stImage,
+    [data-testid="stSidebar"] .stButton,
+    [data-testid="stSidebar"] .stSelectbox,
+    [data-testid="stSidebar"] .stRadio,
+    [data-testid="stSidebar"] .stTextInput,
+    [data-testid="stSidebar"] .stAlert,
+    [data-testid="stSidebar"] .stSuccess,
+    [data-testid="stSidebar"] .stWarning,
+    [data-testid="stSidebar"] .stInfo,
+    [data-testid="stSidebar"] .stError {
+        background-color: transparent !important;
+    }
+    
+    /* Sidebar image container */
+    [data-testid="stSidebar"] .stImage img {
+        background-color: transparent !important;
+    }
+    
+    /* Sidebar all text */
+    [data-testid="stSidebar"] *,
+    [data-testid="stSidebar"] .stMarkdown p,
+    [data-testid="stSidebar"] .stMarkdown h1,
+    [data-testid="stSidebar"] .stMarkdown h2,
+    [data-testid="stSidebar"] .stMarkdown h3,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] div {
+        color: #ffffff !important;
+    }
+    
+    /* Sidebar headings */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        color: #4ab8e8 !important;
+    }
+    
+    /* ====== FIX SELECTBOX - VISIBLE TEXT ====== */
+    /* Selectbox container */
+    [data-testid="stSidebar"] .stSelectbox,
+    [data-testid="stSidebar"] .stSelectbox > div,
+    [data-testid="stSidebar"] .stSelectbox > div > div {
+        background-color: transparent !important;
+    }
+    
+    /* Selectbox input field */
+    [data-testid="stSidebar"] .stSelectbox select {
+        background-color: #3a3a3a !important;
+        color: #ffffff !important;
+        border: 1px solid #4a4a4a !important;
+        padding: 0.5rem !important;
+        border-radius: 8px !important;
+        font-size: 14px !important;
+    }
+    
+    /* Selectbox dropdown options */
+    [data-testid="stSidebar"] .stSelectbox select option {
+        background-color: #3a3a3a !important;
+        color: #ffffff !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* Selectbox when focused */
+    [data-testid="stSidebar"] .stSelectbox select:focus {
+        border-color: #4ab8e8 !important;
+        box-shadow: 0 0 0 2px rgba(74, 184, 232, 0.2) !important;
+        outline: none !important;
+    }
+    
+    /* Selectbox hover */
+    [data-testid="stSidebar"] .stSelectbox select:hover {
+        border-color: #4ab8e8 !important;
+    }
+    
+    /* Selectbox label */
+    [data-testid="stSidebar"] .stSelectbox label {
+        color: #8aaec9 !important;
+        font-weight: 500 !important;
+    }
+    
+    /* ====== FIX TEXT INPUT ====== */
+    [data-testid="stSidebar"] .stTextInput input {
+        background-color: #3a3a3a !important;
+        color: #ffffff !important;
+        border: 1px solid #4a4a4a !important;
+        padding: 0.5rem !important;
+        border-radius: 8px !important;
+    }
+    
+    [data-testid="stSidebar"] .stTextInput input:focus {
+        border-color: #4ab8e8 !important;
+        box-shadow: 0 0 0 2px rgba(74, 184, 232, 0.2) !important;
+        outline: none !important;
+    }
+    
+    [data-testid="stSidebar"] .stTextInput label {
+        color: #8aaec9 !important;
+        font-weight: 500 !important;
+    }
+    
+    /* ====== FIX RADIO BUTTONS ====== */
+    [data-testid="stSidebar"] .stRadio label {
+        color: #ffffff !important;
+    }
+    
+    [data-testid="stSidebar"] .stRadio [role="radiogroup"] {
+        background-color: #3a3a3a !important;
+        padding: 0.5rem !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Sidebar buttons */
+    [data-testid="stSidebar"] .stButton > button {
+        background: linear-gradient(135deg, #2f528f 0%, #4a7abf 100%) !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
+    
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background: linear-gradient(135deg, #1a3a6a 0%, #2f528f 100%) !important;
+        box-shadow: 0 4px 16px rgba(47, 82, 143, 0.3) !important;
+    }
+    
+    /* Sidebar info boxes */
+    [data-testid="stSidebar"] .sidebar-info {
+        background: #3a3a3a !important;
+        border-left: 3px solid #4ab8e8 !important;
+        padding: 0.75rem !important;
+        border-radius: 8px !important;
+        margin: 0.5rem 0 !important;
+    }
+    
+    [data-testid="stSidebar"] .sidebar-info p,
+    [data-testid="stSidebar"] .sidebar-info strong {
+        color: #ffffff !important;
+    }
+    
+    /* Sidebar success/warning messages */
+    [data-testid="stSidebar"] .stAlert {
+        background-color: #3a3a3a !important;
+        border: 1px solid #4a4a4a !important;
+    }
+    
+    [data-testid="stSidebar"] .stAlert p {
+        color: #ffffff !important;
+    }
+    
+    /* Sidebar scrollbar */
+    [data-testid="stSidebar"] ::-webkit-scrollbar {
+        background-color: #2a2a2a !important;
+    }
+    
+    [data-testid="stSidebar"] ::-webkit-scrollbar-thumb {
+        background-color: #4ab8e8 !important;
+        border-radius: 10px !important;
+    }
+    
+    /* Navigation menu */
+    .nav-link {
+        color: #8aaec9 !important;
+    }
+    
+    .nav-link:hover {
+        background: #1a2a3a !important;
+    }
+    
+    .nav-link-selected {
+        background: linear-gradient(135deg, #2f528f 0%, #4a7abf 100%) !important;
+        color: #ffffff !important;
+    }
+    
+    .nav-link-selected span {
+        color: #ffffff !important;
+    }
+    
+    /* Input fields on black */
+    .stTextInput input, 
+    .stSelectbox select, 
+    .stTextArea textarea {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+        border: 1px solid #3a3a3a !important;
+    }
+    
+    .stTextInput input:focus, 
+    .stSelectbox select:focus {
+        border-color: #4ab8e8 !important;
+        box-shadow: 0 0 0 2px rgba(74, 184, 232, 0.1) !important;
+    }
+    
+    /* Selectbox options */
+    .stSelectbox option {
+        background-color: #1a1a1a !important;
+        color: #ffffff !important;
+    }
+    
+    /* Buttons on black */
+    .stButton > button {
+        background: linear-gradient(135deg, #2f528f 0%, #4a7abf 100%) !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(47, 82, 143, 0.3) !important;
+        background: linear-gradient(135deg, #1a3a6a 0%, #2f528f 100%) !important;
+    }
+    
+    /* Tabs on black */
+    .stTabs [data-baseweb="tab-list"] button p {
+        color: #8aaec9 !important;
+    }
+    
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] {
+        background: linear-gradient(135deg, #1a2a3a 0%, #2a4a6a 100%) !important;
+        border-bottom: 3px solid #4ab8e8 !important;
+    }
+    
+    .stTabs [data-baseweb="tab-list"] button[aria-selected="true"] p {
+        color: #4ab8e8 !important;
+    }
+    
+    /* Metrics on black */
+    .stMetric label, 
+    .stMetric .stMetricLabel {
+        color: #8aaec9 !important;
+    }
+    
+    .stMetric .stMetricValue {
+        color: #4ab8e8 !important;
+    }
+    
+    /* Alert boxes on black */
+    .stAlert {
+        background-color: #1a1a1a !important;
+        border: 1px solid #3a3a3a !important;
+    }
+    
+    .stAlert p {
+        color: #d0d0d0 !important;
+    }
+    
+    /* Success message */
+    .stSuccess {
+        background-color: #0a2a1a !important;
+        border: 1px solid #2a6a4a !important;
+        color: #4aaf6a !important;
+    }
+    
+    /* Warning message */
+    .stWarning {
+        background-color: #2a2a0a !important;
+        border: 1px solid #6a6a2a !important;
+        color: #e8b830 !important;
+    }
+    
+    /* Error message */
+    .stError {
+        background-color: #2a0a0a !important;
+        border: 1px solid #6a2a2a !important;
+        color: #d45a5a !important;
+    }
+    
+    /* Info message */
+    .stInfo {
+        background-color: #0a1a2a !important;
+        border: 1px solid #2a4a6a !important;
+        color: #4ab8e8 !important;
+    }
+    
+    /* Footer */
+    .footer {
+        background: linear-gradient(135deg, #0a0a0a, #1a1a1a) !important;
+        border-top: 1px solid #2a2a2a !important;
+    }
+    
+    .footer p, .footer strong {
+        color: #8aaec9 !important;
+    }
+    
+    /* Expander */
+    .streamlit-expanderHeader {
+        background: #1a1a1a !important;
+        color: #4ab8e8 !important;
+        border: 1px solid #2a2a2a !important;
+    }
+    
+    /* Radio buttons */
+    .stRadio label {
+        color: #d0d0d0 !important;
+    }
+    
+    /* Checkbox */
+    .stCheckbox label {
+        color: #d0d0d0 !important;
+    }
+    
+    /* Plotly charts - dark background */
+    .js-plotly-plot {
+        background-color: transparent !important;
+    }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        background-color: #0a0a0a !important;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background-color: #2f528f !important;
+        border-radius: 10px !important;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background-color: #1a1a1a !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -800,7 +1314,7 @@ def main():
     # Header with live clock
     st.markdown("""
                  <div class='main-header'>
-        <h1 style='color: #2c5f8a !important;'>🎓 CBT Examination Analytics Dashboard</h1>
+        <h1 style='color: #2c5f8a !important;'>🎓Examination Analytics Dashboard</h1>
         <p style='font-size: 1.1rem; color: #4a6f8a !important;'>Advanced Analytics & Business Intelligence</p>
         <p style='font-size: 0.9rem; color: #6a8faa !important;'>Data Science Team 1 | Enterprise Edition</p>
     </div>
@@ -887,11 +1401,8 @@ def main():
         if 'exam_data' in st.session_state:
             df = st.session_state['exam_data']
             
-            # Advanced filters
+            # Advanced filters (REMOVED the search box)
             st.markdown("### 🔍 Smart Filters")
-            
-            # Search box
-            search = st.text_input("🔎 Search Student/Course", placeholder="Type to search...")
             
             # Department filter
             depts = ['All'] + sorted(df['department'].unique().tolist())
@@ -901,17 +1412,12 @@ def main():
             sems = ['All'] + sorted(df['semester'].unique().tolist())
             filter_sem = st.selectbox("Semester", sems)
             
-            # Apply filters
+            # Apply filters (removed search filtering)
             filtered_df = df.copy()
             if filter_dept != 'All':
                 filtered_df = filtered_df[filtered_df['department'] == filter_dept]
             if filter_sem != 'All':
                 filtered_df = filtered_df[filtered_df['semester'] == int(filter_sem)]
-            if search:
-                filtered_df = filtered_df[
-                    filtered_df['student_id'].astype(str).str.contains(search, case=False) |
-                    filtered_df['course_name'].astype(str).str.contains(search, case=False)
-                ]
             
             st.session_state['filtered_data'] = filtered_df
             st.session_state['filter_info'] = f"{len(filtered_df)} records"
